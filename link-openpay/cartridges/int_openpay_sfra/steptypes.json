@@ -1,0 +1,36 @@
+{
+    "step-types": {
+        "script-module-step": [
+            {
+                "@type-id":"custom.UpdateOrderStatus",
+                "module":"int_openpay_sfra/cartridge/scripts/checkout/openpayUpdateOrderStatus.js",
+                "description":"Update Order Status in Openpay",
+                "function":"Run",
+                "parameters":{
+                    "parameter":[
+                        {
+                            "@name":"paymentDelayMinutes",
+                            "description":"set time to delay payment",
+                            "@type":"string",
+                            "@required":"true",
+                            "@trim":"true",
+                            "default-value":""
+                        }
+                    ]
+                },
+                "status-codes": {
+                    "status": [
+                        {
+                            "@code":"ERROR",
+                            "description": "Step execution failed."
+                        },
+                        {
+                            "@code":"FINISHED",
+                            "description":"Step execution finished successfully."
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

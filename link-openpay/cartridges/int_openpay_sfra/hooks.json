@@ -1,0 +1,12 @@
+{
+    "hooks": [
+        {
+            "name": "app.payment.processor.basic_credit",
+            "script": "./cartridge/scripts/hooks/payment/processor/basic_credit"
+        },
+        {
+            "name": "app.payment.processor.openpay",
+            "script": "./cartridge/scripts/hooks/payment/processor/openpay"
+        }
+    ]
+}

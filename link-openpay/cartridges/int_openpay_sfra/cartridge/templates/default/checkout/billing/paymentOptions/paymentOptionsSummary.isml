@@ -1,0 +1,11 @@
+
+<div class="payment-details">
+    <isloop items="${pdict.order.billing.payment.selectedPaymentInstruments}" var="payment">
+        <isif condition="${payment.paymentMethod === 'CREDIT_CARD'}">
+            <isinclude template="checkout/billing/paymentOptions/creditCardSummary" />
+        <iselse>
+            <isset name="paymentMethod" value="${payment.paymentMethod.toLowerCase()}" scope="page" />
+            <isprint value="${paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1)}" />
+        </isif>
+    </isloop>
+</div>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+
+    <type-extension type-id="Order">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="openpayIsOpOrder">
+                <display-name xml:lang="x-default">Openpay Payment Method</display-name>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayOrderStatus">
+                <display-name xml:lang="x-default">Transaction Status</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayPlanID">
+                <display-name xml:lang="x-default">Openpay Plan ID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayPlanStatus">
+                <display-name xml:lang="x-default">Plan Status</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayRefundHistory">
+                <display-name xml:lang="x-default">Refund History</display-name>
+                <type>text</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>true</externally-managed-flag>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="Openpay">
+                <display-name xml:lang="x-default">Openpay</display-name>
+                <attribute attribute-id="openpayIsOpOrder"/>
+                <attribute attribute-id="openpayPlanID"/>
+                <attribute attribute-id="openpayPlanStatus"/>
+                <attribute attribute-id="openpayOrderStatus"/>
+                <attribute attribute-id="openpayRefundHistory"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+
+    <type-extension type-id="SitePreferences">
+        <custom-attribute-definitions>
+            <attribute-definition attribute-id="isOpenpayEnabled">
+                <display-name xml:lang="x-default">Is Openpay Enabled</display-name>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>true</default-value>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayEndpoint">
+                <display-name xml:lang="x-default"> Endpoint</display-name>
+                <description xml:lang="x-default">Openpay Endpoint URL for API requests</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayHandoverURL">
+                <display-name xml:lang="x-default">Openpay Handover URL</display-name>
+                <description xml:lang="x-default">Destination for Openpay redirection</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayServiceID">
+                <display-name xml:lang="x-default">Service ID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayUserAgent">
+                <display-name xml:lang="x-default">User Agent</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayJamAuthToken">
+                <display-name xml:lang="x-default">Openpay Password</display-name>
+                <description xml:lang="x-default">GUID issued by Openpay</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayMaxPrice">
+                <display-name xml:lang="x-default">Maximum Checkout Value</display-name>
+                <type>double</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>10000.0</default-value>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayMerchantID">
+                <display-name xml:lang="x-default">Openpay Username</display-name>
+                <description xml:lang="x-default">Store Identity Num</description>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="openpayMinPrice">
+                <display-name xml:lang="x-default">Minimum Checkout Value</display-name>
+                <type>double</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>1.0</default-value>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="Openpay General Config">
+                <display-name xml:lang="x-default">Openpay General Configuration</display-name>
+                <attribute attribute-id="isOpenpayEnabled"/>
+                <attribute attribute-id="openpayMerchantID"/>
+                <attribute attribute-id="openpayJamAuthToken"/>
+                <attribute attribute-id="openpayHandoverURL"/>
+                <attribute attribute-id="openpayServiceID"/>
+                <attribute attribute-id="openpayUserAgent"/>
+                <attribute attribute-id="openpayMinPrice"/>
+                <attribute attribute-id="openpayMaxPrice"/>
+            </attribute-group>
+        </group-definitions>
+    </type-extension>
+
+</metadata>

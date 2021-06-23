@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jobs xmlns="http://www.demandware.com/xml/impex/jobs/2015-07-01">
+    <job job-id="OpenPay-Update-OrderStatus" priority="1">
+        <description>Periodically calls OnlineOrderStatus with any PlanIDs that are still pending. If OnlineOrderStatus returns active, storefront updates their status from pending to complete/paid</description>
+        <parameters/>
+        <flow>
+            <context site-id="RefArch"/>
+            <step step-id="UpdateOrderStatus" type="custom.UpdateOrderStatus" enforce-restart="false">
+                <description/>
+                <parameters>
+                    <parameter name="paymentDelayMinutes">30</parameter>
+                </parameters>
+            </step>
+        </flow>
+        <rules/>
+        <triggers>
+            <run-recurring enabled="true">
+                <recurrence>
+                    <date-from>2021-03-02Z</date-from>
+                    <start-time>00:25:23.000Z</start-time>
+                    <interval>1h</interval>
+                    <day-of-week/>
+                </recurrence>
+            </run-recurring>
+        </triggers>
+    </job>
+
+</jobs>

@@ -1,0 +1,337 @@
+.openpay-checkout-widget {
+    border: 0.0625em solid silver;
+    border-radius: 0.375em;
+    max-width: 23.3125em;
+    background-color: #ececec;
+    margin: 0 auto;
+}
+
+
+  
+.single-plan-text {
+    margin-top: 0.4375em;
+}
+  
+.openpay-button {
+	background-color: silver;
+    border-radius: 0.3125em;
+    border-color: silver;
+    border: none;
+    padding: 0.3125em 3.4375em 0.4375em;
+}
+  
+button.openpay-button:hover {
+    background-color: #c8d7ff;
+    border-color: silver;
+}
+  
+.openpay-button-text {
+	color: #FFFFFF;
+	font-size: 0.875em;
+}
+
+	  
+.fourth-content {
+	max-width: 15.625em;
+    margin: 0 auto;
+	font-size: 0.875em;
+	text-align: center;
+    padding: 1.5625em 0 0;
+}
+  
+.fifth-content {
+    padding-bottom: 2.1875em;
+    text-align: center;
+    font-size: 0.875em;
+    margin: 0 auto;
+}
+  
+.checkout-logo {
+    position: relative;
+    margin-left: 32.0625em;
+    bottom: 3.1875em;
+}
+
+button.section-1 {
+    margin: 1.1875em auto 1em;
+}
+
+.checkout-proceed {
+    text-align: center;
+    margin: 1.25em 0;
+}
+
+#plan-duration {
+	font-size: 2.125em;
+    line-height: 2.125em;
+    display: inline-block;
+}
+  
+#widget-text {
+    text-align: left;
+    width: 4.625em;
+    font-size: 0.75em;
+    line-height: 0.9375em;
+    margin: 0 0 0 0.375em;
+    display: inline-block;
+}
+  
+#plan-amount {
+    font-size: 1.375em;
+    display: inline-block;
+    line-height: 1.375em;
+}
+
+.product-tile .openpay-widget {
+	display: none;
+}
+.product-tile:hover .openpay-widget {
+	display: block;
+}
+.product-detail .openpay-widget {
+	margin-bottom: 1em;
+}
+.openpay-widget a.more-info {
+	white-space: nowrap;
+}
+.modal-open .modal {
+	background-color: rgba(0,0,0,0.5);
+}
+.quick-view-dialog .modal-header .close {
+	background-color: #f7f5f5;
+	border-color: #f9f9f9;
+}
+#overview-container-head {
+	padding-left: 4%;
+	margin-bottom: 2em;
+}
+#overview-container-head > .content-asset {
+	float: left;
+    margin-right: 3%;
+}
+#openpayimgspan img {
+	width: 29%;
+	display: inline-block;
+	position: relative;
+	padding: 3% 2%;
+	border-left: 0.125em solid #999;
+}
+
+.openpayModal span#text {
+	font-size: 1.875em;
+    padding-left: 4%;
+    display: block;
+}
+#popUpimgspan {
+    display: block;
+    height: 20em;
+    background-position: -0.0625em 0;
+    background-size: 101% 101%;
+    background-repeat: no-repeat;
+    padding-top: 2em;
+    position: relative;
+}
+
+#merchantLogo {
+	padding-top: 5.5%;
+	height:59%;
+	padding-right: 2%;
+}
+
+#overview-container-circles {
+	text-align:center;
+	display:flex;
+	margin: 3em 0 0;
+}
+
+.circlebox {
+	width:33%;
+}
+
+.circle {
+	padding: 5% 0;
+	width:40%;
+}
+
+.circlebox p {
+	font-size: 1.125em;
+	margin-bottom: 1.5em;
+}
+
+.circlebox.shop p {
+	padding: 0 25%;
+}
+.circlebox.select p {
+	padding: 0 6%;
+}
+.circlebox.register p {
+	padding: 0 10%;
+}
+
+#overview-container-footer {
+	background-color: #efefef;
+    padding: 0.5em 10%;
+    font-size: 0.9375em;
+    text-align: center;
+}
+
+#overview-container-footer p {
+	text-align: center;
+	margin: 0;
+}
+
+#overview-text-box {
+	border-radius: 2.5em;
+    font-size: 1.5625em;
+    background-color: #fff;
+    padding: 0.625em 1.25em;
+    box-shadow: 0.1875em 0.25em 0.625em #ccc;
+    display: block;
+    position: absolute;
+    bottom: -1.25em;
+    text-align: center;
+    width: 92%;
+    left: 4%;
+}
+
+.openpayModal .quick-view-dialog .modal-header {
+	border-bottom: medium none;
+    padding: 0;
+}
+.openpayModal .modal-header button {
+	position: absolute;
+    right: 1.375em;
+    z-index: 1;
+    padding: 0.0625em 0.25em 0.3125em 0.3125em;
+    top: 1.3125em;
+    border: 0.0625em solid #000;
+    border-radius: 50%;
+}
+.openpayModal .modal-content {
+	border-radius: 0.8125em;
+	overflow: hidden;
+}
+.openpayModal .quick-view-dialog .modal-body {
+	padding: 0;
+	max-height: initial;
+}
+.openpayModal .quick-view-dialog{
+	max-width: 40em;
+}
+.openpayModal.modal.show .modal-dialog {
+    transition: transform .5s ease-out, top .1s ease-out;
+}
+
+@media all and (max-width: 31.25em) {
+	#overview-container-head>.content-asset {
+		width: 30%;
+    	margin: 0;
+	}
+	.modal.fade .modal-dialog {
+		margin: 1em;
+	}
+	#popUpimgspan {
+		height: 15em;
+	}
+	#overview-text-box {
+		font-size: 1.0625em;
+	}
+	.openpayModal span#text {
+		font-size: 1.25em;
+	}
+	.circlebox p {
+		font-size: 0.8125em;
+		line-height: 1.0625em;
+	}
+	#overview-container-footer {
+		font-size: 0.75em;
+	}
+	#merchantLogo {
+		width: 100%;
+    	padding-right: 0.625em;
+    	margin: 0;
+	}
+	.product-detail .openpay-widget{
+		padding: 0 1.25em;
+	}
+	#overview-container-circles{
+		margin: 2.25em 0 0;
+	}
+}
+@media all and (max-width: 26.25em) {
+	#popUpimgspan {
+	    height: 13em;
+	}
+	#overview-text-box {
+	    font-size: 0.9375em;
+	    padding: 0.625em 3%;
+	}
+	#overview-container-footer {
+	    font-size: 0.625em;
+	    padding: 1em 2%;
+	}
+	#overview-container-circles {
+	    margin: 1.5em 0 0;
+	}
+	.circlebox p {
+	    margin-bottom: 1em;
+	    font-size: 0.75em;
+	}
+	.circlebox.select p {
+	    padding: 0;
+	}
+}
+@media all and (max-width: 23.4375em) {
+    #overview-container-head {
+	    margin-bottom: 1em;
+	}
+    #popUpimgspan {
+	    height: 11em;
+    	padding-top: 1em;
+	}
+	.openpayModal span#text {
+	    font-size: 0.875em;
+	}
+	#overview-text-box {
+	    font-size: 0.75em;
+	}
+	#overview-container-footer {
+	    padding: 0.5em 2%;
+	    font-size: 0.625em;
+	}
+	.circlebox p {
+		font-size: 0.625em;
+		line-height: 0.75em;
+	}
+	#overview-container-circles {
+		margin: 1.5em 0 0;
+	}
+}
+
+@media (max-height: 17.1875em) and (max-width: 23.4375em){
+	#overview-container-footer {
+	    background-color: #fff;
+	    padding: 2.5em 2% 1em;
+	}
+	#overview-container-circles {
+	    display: none;
+	}
+}
+
+@media all and (max-width: 20em) {
+    #popUpimgspan {
+	    height: 10em;
+	}
+    #overview-text-box {
+	    font-size: 0.6875em;
+	    padding: 0.625em 0.3125em;
+	}
+	#overview-container-circles {
+		display: none;
+	}
+	#overview-container-footer {
+	    background-color: #ffff;
+	    padding: 3em 4% 1.5em;
+	    font-size: 0.5em;
+	}
+}

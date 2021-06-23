@@ -1,0 +1,69 @@
+<!--- TEMPLATENAME: homelanding.isml --->
+<isdecorate template="application/menuframe">
+ 
+	<iscontent type="text/html" charset="UTF-8"> 
+	<isinclude template="custom/modules" /> 
+	
+	<isbreadcrumbs bcurl1="${URLUtils.url('OpenPay-OrderList')}" 
+		bctext1="${Resource.msg('order.list.label','openpay',null)}" />
+	
+	<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<tbody>
+			<tr>
+				<td colspan="5" class="overview_title">${Resource.msg('order.list.title','openpay',null)}</td>
+			</tr>
+			<tr>
+				<td colspan="5" class="overview_title_description"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<isinclude template="application/orderlistsearch" />
+	
+	<isif condition="${pdict.totalOrderCount == 0}">
+	<table class="order-list-empty n w e s" border="0" cellpadding="0" cellspacing="0" width="100%">
+	   <tbody>
+	      <tr>
+	         <td width="100%" class="table_detail">
+	            <p>
+	               ${Resource.msg('order.list.noorders','openpay',null)}
+	            </p>
+	         </td>
+	      </tr>
+	   </tbody>
+	</table>
+	<iselse>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" id="filtertableProjects">
+		    <tbody>
+		      	<tr>
+			    	<th class="table_header left n e s w" nowrap="nowrap" width="13%">${Resource.msg('orderid','openpay',null)}</th>
+			    	<th class="table_header left n e s" nowrap="nowrap" width="13%">${Resource.msg('orderdate','openpay',null)}</th>
+					<th class="table_header left n e s" nowrap="nowrap" width="21%">${Resource.msg('email','openpay',null)}</th>
+			    	<th class="table_header right n e s" nowrap="nowrap" width="13%">${Resource.msg('total','openpay',null)}</th>
+					<th class="table_header left n e s" nowrap="nowrap" width="17%">${Resource.msg('order.list.status','openpay',null)}</th>
+		    	</tr>
+		    	<isset name="paymentInstrument" value="${null}" scope="page"/>
+		    	<isloop items="${pdict.orders}" var="order" status="loopstate">
+			    	<tr style="background-color: #FFFFFF">
+			        	<td class="table_detail w e s" nowrap="nowrap">
+			        		<a href="${URLUtils.url('OpenPay-OrderDetails', 'OrderNo', order.orderNo)}" target="_blank">${order.orderNo}</a>
+			        	</td>
+			        	<isloop items="${order.getPaymentInstruments()}" var="paymentInstr" status="loopstate">
+			        		<isif condition="${paymentInstr.paymentMethod == 'OPENPAY'}">
+			        			<isset name="paymentInstrument" value="${paymentInstr}" scope="page"/>
+			        		</isif>
+						</isloop>
+						<isset name="paymentTransaction" value="${paymentInstrument ? paymentInstrument.getPaymentTransaction() : null}" scope="page"/>
+			        	<isset name="calendarDate" value="${dw.util.Calendar(order.getCreationDate())}" scope="page"/>
+			            <isset name="creationDate" value="${dw.util.StringUtils.formatCalendar(dw.util.Calendar(calendarDate), 'yyyy-MM-dd HH:mm')}" scope="page"/>
+			        	<td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${creationDate}</label></td>
+			            <td class="table_detail left e s" nowrap="nowrap">${order.getBillingAddress().getFullName()}</td>
+			            <td class="table_detail right e s" nowrap="nowrap">${order.getTotalGrossPrice()}</td>
+						<td class="table_detail right e s" nowrap="nowrap">${'openpayOrderStatus' in order.custom ? order.custom.openpayOrderStatus : 'Pending'}</td>
+			        </tr>
+				</isloop>
+		    </tbody>
+		</table>
+		<isinclude template="application/orderlistpagination" />
+	</isif>
+</isdecorate>

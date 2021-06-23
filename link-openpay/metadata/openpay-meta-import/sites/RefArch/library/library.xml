@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.demandware.com/xml/impex/library/2006-10-31" library-id="RefArchSharedLibrary">
+    
+    <content content-id="openpayCheckoutWidget">
+        <display-name xml:lang="x-default">OpenPay Checkout Widget</display-name>
+        <online-flag>true</online-flag>
+        <searchable-flag>false</searchable-flag>
+        <page-attributes/>
+        <custom-attributes>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;script src="https://widgets.openpay.com.au/lib/openpay-widgets.min.js"&gt;&lt;/script&gt;&#13;
+&lt;script&gt;&#13;
+  OpenpayWidgets.Config({&#13;
+    region: 'AU',&#13;
+    currency: '$',&#13;
+    planTiers: [2, 3, 4, 6, 7, 8],&#13;
+    minEligibleAmount: 100,&#13;
+    maxEligibleAmount: 5000,&#13;
+    type: 'Online'&#13;
+  });&#13;
+&lt;/script&gt;&#13;
+&lt;opy-learn-more-button&gt;&lt;/opy-learn-more-button&gt;</custom-attribute>
+        </custom-attributes>
+    </content>
+
+</library>

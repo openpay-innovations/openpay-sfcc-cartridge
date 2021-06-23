@@ -1,0 +1,194 @@
+<!--- TEMPLATENAME: openpayorder.isml --->
+<isdecorate template="application/menuframe"> 
+	<iscontent type="text/html" charset="UTF-8"> 
+	<isinclude template="custom/modules" />
+	<isset name="orderNo" value="${pdict.CurrentHttpParameterMap.OrderNo.stringValue}" scope ="page"/>
+	<isbreadcrumbs bcurl1="${URLUtils.url('OpenPay-OrderList')}" 
+		bctext1="${Resource.msg('order.list.label','openpay',null)}" 
+		bcurl2="${URLUtils.url('OpenPay-OrderDetails','OrderNo', orderNo)}" 
+		bctext2="${Resource.msg('order.details.label','openpay',null)}" />
+
+<h1>${Resource.msg('order.details.header','openpay',null)+' '+orderNo}</h1>
+<isset name="order" value="${dw.order.OrderMgr.getOrder(orderNo)}" scope ="page"/>
+<isset name="shippingAddress" value="${order.defaultShipment.shippingAddress}" scope="page" />
+<table border="0" cellpadding="4" cellspacing="0" width="100%" class="infobox n">
+	<tbody>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.information','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">
+				${Resource.msg('order.information.body1','openpay',null)+' '+order.getAllProductLineItems().size()+' '+Resource.msg('order.information.body2','openpay',null)+Resource.msg('order.information.body3','openpay',null)+' '+order.getTotalGrossPrice()}
+				</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.creation.date','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">${dw.util.StringUtils.formatCalendar(dw.util.Calendar(order.creationDate), 'dd-MM-yyyy HH:mm:ss z')}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.site','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">${dw.system.Site.current.ID}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.createdby','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">${order.createdBy}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.customer','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">${order.getCustomerName()}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.customerno','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">${order.getCustomerNo() ? order.getCustomerNo() : "anonymous" + order.getCustomer().getID()}</label></td>		
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.customer.email','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">${order.getCustomerEmail()}</label></td>		
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('transaction.status','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%><label class="item-label" for="">${order && 'openpayOrderStatus' in order.custom ? order.custom.openpayOrderStatus : ''}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('payment.shipping.address','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%"><label class="item-label" for=""></label>${shippingAddress.firstName+' '+shippingAddress.lastName}<br>
+				${shippingAddress.address1 + ' '}${shippingAddress.address2 ? shippingAddress.address2 : ''}<br>
+				${shippingAddress.city}
+				${shippingAddress.stateCode ? shippingAddress.stateCode : ''}
+				${shippingAddress.postalCode}<br>
+				${shippingAddress.countryCode.value}<br>${shippingAddress.phone}
+			</td>		
+		</tr>
+	</tbody>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="filtertableProjects">
+    <thead>
+      <tr>
+    	<th class="table_header left n e s w" nowrap="nowrap" width="5%">${Resource.msg('order.product.qty','openpay',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="11%">${Resource.msg('order.product.id','openpay',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="20%">${Resource.msg('order.product.name','openpay',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="10%">${Resource.msg('order.product.manufacture','openpay',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="8%">${Resource.msg('order.product.taxrate','openpay',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="16%">${Resource.msg('order.product.unitsaleprice','openpay',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="8%">${Resource.msg('order.product.taxbasis','openpay',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="10%">${Resource.msg('order.product.itemtotal','openpay',null)}</th>
+    </tr>
+    </thead>
+    <tbody>
+	    <isloop items="${order.getAllLineItems()}" var="product" status="loopstate">
+	    	<isif condition="${'productID' in product && product.productID}">
+		     	<tr>
+				    <td class="table_detail left e s w" nowrap="nowrap"><label class="item-label" for="">${'quantityValue' in product ? product.quantityValue.toFixed(0): '1'}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${'productID' in product ? product.productID : ''}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${'productName' in product ? product.productName : product.lineItemText}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for=""></label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.taxRate*100+"%"}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.getPrice()}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.getTaxBasis()}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.getNetPrice()}</label></td>
+		    	</tr>
+		    </isif>
+	    </isloop>
+    	<tr>
+		    <td class="table_detail right e w s" colspan="7" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.shipment.shipping.cost','openpay',null)}</label></td>
+		    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${order.getShippingTotalNetPrice()}</label></td>
+		</tr>
+		<tr>
+		    <td class="table_detail bold right e w s" colspan="7" nowrap="nowrap">${Resource.msg('order.total.shipping.cost','openpay',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for="">${order.getShippingTotalNetPrice()}</label></td>
+		</tr> 
+		<tr>
+		    <td class="table_detail bold right e w" colspan="7" nowrap="nowrap">${Resource.msg('order.shipping.total','openpay',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for=""></label>${order.getShippingTotalPrice()}</td>
+		</tr>
+		<tr>
+		    <td class="table_detail bold right e w" colspan="7" nowrap="nowrap">${Resource.msg('order.tax.total','openpay',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for="">${order.getTotalTax()}</label></td>
+		</tr>
+		<tr>
+		    <td class="table_detail bold right e w s" colspan="7" nowrap="nowrap">${Resource.msg('order.total','openpay',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for="">${order.getTotalGrossPrice()}</label></td>
+		</tr>
+    </tbody>
+ </table>
+<isset name="planStatus" value="${order && 'openpayPlanStatus' in order.custom ? order.custom.openpayPlanStatus : ''}" scope="page" />
+<isset name="refundHistory" value="${order && 'openpayRefundHistory' in order.custom ? order.custom.openpayRefundHistory : '[]'}" scope="page" />
+<isset name="planID" value="${order && 'openpayPlanID' in order.custom ? order.custom.openpayPlanID : ''}" scope="page" />
+<isset name="canRefund" value="${planStatus.toLowerCase() == 'active'}" scope="page"  scope="page" />
+<input type="hidden" name="refundHistory" id="refundHistory" value="${refundHistory}">
+
+ <h1>${Resource.msg('payment.information.header','openpay',null) +' '+ orderNo}</h1>
+ <table border="0" cellpadding="4" cellspacing="0" width="100%" class="infobox n">
+ 	<tbody>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('payment.total','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%"><label class="item-label" for="">${order.getTotalGrossPrice()}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('payment.planID','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%"><label class="item-label" for="">${planID}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('payment.status','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%"><label class="item-label" for="">${planStatus}</label></td>
+		</tr>
+		<tr>
+			<td class="table_detail left e w s" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('payment.billing.address','openpay',null)}</label></td>
+			<td class="table_detail left e s" nowrap="nowrap" width="75%"><label class="item-label" for=""></label>${order.getBillingAddress().firstName+' '+order.getBillingAddress().lastName}<br>
+				${order.getBillingAddress().address1 + ' '}${order.getBillingAddress().address2 ? order.getBillingAddress().address2 : ''}<br>
+				${order.getBillingAddress().city}
+				${order.getBillingAddress().stateCode ? order.getBillingAddress().stateCode : ''}
+				${order.getBillingAddress().postalCode}<br>
+				${order.getBillingAddress().countryCode}<br>${order.getBillingAddress().phone}<br>
+			</td>		
+		</tr>
+	</tbody>
+</table>
+<isset name="refundHistoryTransaction" value="${JSON.parse(refundHistory)}" scope ="page"/>
+<isset name="refundHistoryTrans" value="${pdict.utils.sortByDate(refundHistoryTransaction,'date')}" scope ="page"/>
+<isif condition="${refundHistoryTrans.length > 0}">
+    <h1>${Resource.msg('refund.transactions.header','openpay',null)}</h1>
+    <table border="0" cellpadding="4" cellspacing="0" width="30%" class="infobox n">
+        <tbody>
+            <tr>
+                <th class="table_header center e s w" nowrap="nowrap">${Resource.msg('refund.transaction.date','openpay',null)}</th>
+                <th class="table_header center e s" nowrap="nowrap">${Resource.msg('refund.transaction.amount','openpay',null)}</th>
+            </tr>
+            <isloop items=${refundHistoryTrans} var="transaction" status="transStatus">
+                <tr>
+                    <isset name="calendarDate" value="${dw.util.Calendar(transaction.date ? new Date(transaction.date) : new Date())}" scope="page"/>
+                    <isset name="creationDate" value="${dw.util.StringUtils.formatCalendar(dw.util.Calendar(calendarDate), 'dd-MM-yyyy HH:mm:ss z')}" scope="page"/>
+                    <td class="center e s w" nowrap="nowrap">${creationDate}</td>
+                    <td class="center e s" nowrap="nowrap">${(order.getCurrencyCode() + ' ' + transaction.value)}</td>
+                </tr>
+            </isloop>
+        </tbody>
+    </table>
+</isif>
+
+<isif condition="${canRefund}">
+	<div class="title"><h1>${Resource.msg('operations.title','openpay',null)}</h1></div>
+	<div class="current-status">
+		<strong>${Resource.msg('operations.refund.label','openpay',null)}:</strong>
+		<isprint value="${Resource.msg('operations.refund.hints','openpay',null)}" />
+	</div>
+	<div class="operations-container">
+		<div class="operations-holder">
+			<table cellpadding="1" cellspacing="0">
+				<tr>
+					<td>Available to refund:</td>
+					<td colspan="2">
+					    <input name="amount">
+						<input type="hidden" name="planID" value="${planID}">
+						<input type="hidden" name="orderno" value="${orderNo}">
+						<input type="hidden" name="total" value="${order.getTotalGrossPrice().value}">
+					</td>
+					<td><button name="submit" class="button">${Resource.msg('operations.submit.label','openpay',null)}</button></td> 
+				</tr>
+			</table>
+			<p class="error"></p>
+		</div>
+	</div>
+</isif>
+
+<script src="${URLUtils.staticURL('/js/transactions.js')}"></script>
+<script type="text/javascript"><isinclude template="application/appresources"/></script>
+</isdecorate>
